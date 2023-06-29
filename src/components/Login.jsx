@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../style";
-import bg from "../assets/image/bg2.jpg";
+import bg from "../assets/image/bg2.webp";
 import { useUserAuth } from "../context/authContext";
-import show from "../assets/image/show.png";
-import hide from "../assets/image/hide.png";
+import show from "../assets/image/show.webp";
+import hide from "../assets/image/hide.webp";
 import { toast } from 'react-toastify';
 import OAuth from "./OAuth";
 import  { FaUserLock } from 'react-icons/fa';
 
 const Login = () => {
+
   const [passwordType, setPasswordType] = useState("password");
   
   const [data, setData] = useState({
@@ -20,7 +21,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const { login, passwordReset } = useUserAuth();
+  const { login } = useUserAuth();
 
   const handleInputs = (e) => {
     const { name, value } = e.target;
@@ -74,14 +75,6 @@ const Login = () => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit(e);
-    }
-  };
-  const handleReset = async (e) => {
-    e.preventDefault();
-    try {
-      await passwordReset(data.email);
-    } catch (err) {
-      setError("User not Found");
     }
   };
 
@@ -184,7 +177,6 @@ const Login = () => {
               <Link
                 to="/passwordReset"
                 className="text-sky-600 dark:text-gradient"
-                onClick={handleReset}
               >
                 reset
               </Link>

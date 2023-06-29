@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import { UserAuthContextProvider } from "./context/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -19,6 +19,7 @@ const Categories=lazy(()=>import('./pages/Categories'));
 const NotFound404=lazy(()=>import('./pages/NotFound404'));
 const Favourite=lazy(()=>import('./components/Favourite'));
 const Favourites=lazy(()=>import('./components/Favourites'));
+const Reset=lazy(()=>import('./components/Reset'));
 
 function App() {
   const [theme, setTheme] = useState(null);
@@ -110,6 +111,15 @@ function App() {
             element={
               <>
                 <Signup />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/passwordReset"
+            element={
+              <>
+                <Reset />
               </>
             }
           />
